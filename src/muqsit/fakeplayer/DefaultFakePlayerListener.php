@@ -12,6 +12,7 @@ use pocketmine\network\mcpe\protocol\ChangeDimensionPacket;
 use pocketmine\network\mcpe\protocol\ClientboundPacket;
 use pocketmine\network\mcpe\protocol\PlayerActionPacket;
 use pocketmine\network\mcpe\protocol\PlayStatusPacket;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\network\mcpe\protocol\RespawnPacket;
 use pocketmine\network\mcpe\protocol\serializer\PacketSerializer;
 use pocketmine\network\mcpe\protocol\SetLocalPlayerAsInitializedPacket;
@@ -37,7 +38,7 @@ final class DefaultFakePlayerListener implements FakePlayerListener{
 				$this->plugin->getScheduler()->scheduleDelayedTask(new ClosureTask(static function() use($session, $entity_runtime_id) : void{
 					if($session->isConnected()){
 						$packet = SetLocalPlayerAsInitializedPacket::create($entity_runtime_id);
-						$serializer = PacketSerializer::encoder();
+						$serializer = PacketSerializer::encoder(ProtocolInfo::CURRENT_PROTOCOL);
 						$packet->encode($serializer);
 						$session->handleDataPacket($packet, $serializer->getBuffer());
 					}
@@ -72,7 +73,7 @@ final class DefaultFakePlayerListener implements FakePlayerListener{
 							0
 						);
 
-						$serializer = PacketSerializer::encoder();
+						$serializer = PacketSerializer::encoder(ProtocolInfo::CURRENT_PROTOCOL);
 						$packet->encode($serializer);
 						$session->handleDataPacket($packet, $serializer->getBuffer());
 					}

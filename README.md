@@ -1,7 +1,7 @@
 # FakePlayer
 
 ## What does this plugin do?
-Similar to [Specter](https://github.com/falkirks/Specter), this plugin spawns players to debug stuff on your server. However, this plugin strictly supports API version 4.0.0.
+Similar to [Specter](https://github.com/falkirks/Specter), this plugin spawns players to debug stuff on your server. However, this plugin strictly supports API version 5.0.0.
 
 ## Usage
 **Who the heck is BoxierChimera37?**<br>My alt xbox live account.
