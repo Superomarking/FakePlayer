@@ -22,6 +22,8 @@ use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 use ReflectionProperty;
 use function json_encode;
+use function mt_getrandmax;
+use function mt_rand;
 
 final class FakePlayerCommandExecutor implements CommandExecutor{
 
@@ -43,7 +45,7 @@ final class FakePlayerCommandExecutor implements CommandExecutor{
 						$pos = $sender->getPosition();
 						foreach($this->plugin->getServer()->getOnlinePlayers() as $player){
 							if($this->plugin->isFakePlayer($player)){
-								$player->teleport($pos->add(8 * (lcg_value() * 2 - 1), 0.0, 8 * (lcg_value() * 2 - 1)));
+								$player->teleport($pos->add(8 * ((mt_rand() / mt_getrandmax()) * 2 - 1), 0.0, 8 * ((mt_rand() / mt_getrandmax()) * 2 - 1)));
 							}
 						}
 					}
